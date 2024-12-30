@@ -1,0 +1,14 @@
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.GeneratedMSBuildEditorConfig.editorconfig
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.AssemblyInfoInputs.cache
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.AssemblyInfo.cs
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.csproj.CoreCompileInputs.cache
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/bin/Debug/net8.0/Blackjack peli
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/bin/Debug/net8.0/Blackjack peli.deps.json
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/bin/Debug/net8.0/Blackjack peli.runtimeconfig.json
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/bin/Debug/net8.0/Blackjack peli.dll
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/bin/Debug/net8.0/Blackjack peli.pdb
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.dll
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/refint/Blackjack peli.dll
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.pdb
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.genruntimeconfig.cache
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/ref/Blackjack peli.dll
