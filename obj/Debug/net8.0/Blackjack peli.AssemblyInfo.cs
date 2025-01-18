@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Blackjack peli")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3028c0e775dbe709d0fa6aaff9dc84eeb5281719")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e0d79f4d525bfe0b4ac53d180dd01882a98a025")]
 [assembly: System.Reflection.AssemblyProductAttribute("Blackjack peli")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Blackjack peli")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

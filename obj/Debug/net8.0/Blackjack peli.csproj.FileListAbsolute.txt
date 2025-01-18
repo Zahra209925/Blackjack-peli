@@ -12,3 +12,4 @@
 /Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.pdb
 /Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.genruntimeconfig.cache
 /Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/ref/Blackjack peli.dll
+/Users/s2401563/Documents/portfolio/ohjelmointi/c-sharp-ohjelmointi/Blackjack peli/obj/Debug/net8.0/Blackjack peli.sourcelink.json

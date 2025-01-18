@@ -3,98 +3,121 @@ using System.Collections.Generic;
 
 namespace Blackjack
 {
-	class program
+	class Program
 	{
 		static void Main(string[] args)
 		{
-			// Tervetuloa-painatus
-			Console.WriteLine("Tervetuloa Blackjack-peliin!");
-			Console.WriteLine("Tavoitteesi on saada korttien summa mahdollisimman lähelle 21:tä menemättä yli.");
-			Console.WriteLine("Aloitetaan peli\n");
-
-			// Korttipakka ja pelaajan sekä jakajan kädet
-			Deck deck = new Deck();
-			deck.Sekoita();
-
-			List<Card> pelaajanKasi = new List<Card>();
-			List<Card> jakajanKasi = new List<Card>();
-
-			// Pelaajalle ja jakajalle jaetaan aluksi kaksi korttia
-			pelaajanKasi.Add(deck.DrawCard());
-			pelaajanKasi.Add(deck.DrawCard());
-			jakajanKasi.Add(deck.DrawCard());
-			jakajanKasi.Add(deck.DrawCard());
-
-			// pelin pääsilmukka
-			bool pelaajanVuoro = true;
-			while (pelaajanVuoro)
+			while (true)
 			{
-				Console.WriteLine("\nKätesi:");
+				// Tervetuloa-painatus
+				Console.WriteLine("Tervetuloa Blackjack-peliin!");
+				Console.WriteLine("Tavoitteesi on saada korttien summa mahdollisimman lähelle 21:tä menemättä yli.");
+				Console.WriteLine("Aloitetaan peli\n");
+
+				// Korttipakka ja pelaajan sekä jakajan kädet
+				Deck deck = new Deck();
+				deck.Sekoita();
+
+				List<Card> pelaajanKasi = new List<Card>();
+				List<Card> jakajanKasi = new List<Card>();
+
+				// Pelaajalle ja jakajalle jaetaan aluksi kaksi korttia
+				pelaajanKasi.Add(deck.DrawCard());
+				pelaajanKasi.Add(deck.DrawCard());
+				jakajanKasi.Add(deck.DrawCard());
+				jakajanKasi.Add(deck.DrawCard());
+
+				// Pelin pääsilmukka
+				bool pelaajanVuoro = true;
+				while (pelaajanVuoro)
+				{
+					Console.WriteLine("\nKätesi:");
+					TulostaKasi(pelaajanKasi);
+					Console.WriteLine($"Kätesi arvo: {LaskeKadenArvo(pelaajanKasi)}");
+
+					Console.WriteLine("\nJakajan näkyvä kortti:");
+					Console.WriteLine(jakajanKasi[0]);
+
+					// Tarkistetaan, onko pelaaja voittanut tai hävinnyt
+					if (LaskeKadenArvo(pelaajanKasi) > 21)
+					{
+						Console.WriteLine("Ylitit 21! Hävisit pelin.");
+						return;
+					}
+
+					// Pelaajan valinta: "Hit", "Stand", tai "Näytä kortit"
+					string valinta;
+					do
+					{
+						Console.WriteLine("\nHaluatko ottaa uuden kortin (h), jäädä (s), vai nähdä jäljellä olevat kortit (n)?");
+						valinta = Console.ReadLine().ToLower();
+						if (valinta != "h" && valinta != "s" && valinta != "n")
+						{
+							Console.WriteLine("Virheellinen valinta, yritä uudelleen.");
+						}
+					} while (valinta != "h" && valinta != "s" && valinta != "n");
+
+					if (valinta == "h")
+					{
+						pelaajanKasi.Add(deck.DrawCard());
+					}
+					else if (valinta == "s")
+					{
+						pelaajanVuoro = false;
+					}
+					else if (valinta == "n")
+					{
+						Console.WriteLine("\nJäljellä olevat kortit pakassa:");
+						deck.NaytaJaljellaOlevatKortit();
+					}
+				}
+
+				// Jakajan vuoro
+				Console.WriteLine("\nJakajan vuoro...");
+				while (LaskeKadenArvo(jakajanKasi) < 17)
+				{
+					jakajanKasi.Add(deck.DrawCard());
+				}
+
+				// Tulostetaan lopulliset kädet
+				Console.WriteLine("\nLopulliset kädet:");
+				Console.WriteLine("Pelaajan käsi:");
 				TulostaKasi(pelaajanKasi);
-				Console.WriteLine($"Kätesi arvo: {LaskeKadenArvo(pelaajanKasi)}");
+				Console.WriteLine($"Pelaajan käden arvo: {LaskeKadenArvo(pelaajanKasi)}");
 
-				Console.WriteLine("\nJakajan näkyvä kortti:");
-				Console.WriteLine(jakajanKasi[0]);
+				Console.WriteLine("\nJakajan käsi:");
+				TulostaKasi(jakajanKasi);
+				Console.WriteLine($"Jakajan käden arvo: {LaskeKadenArvo(jakajanKasi)}");
 
-				// Tarkistetaan, onko pelaaja voittanut tai hävinnyt
-				if (LaskeKadenArvo(pelaajanKasi) > 21)
+				// Voittajan selvittäminen
+				int pelaajanArvo = LaskeKadenArvo(pelaajanKasi);
+				int jakajanArvo = LaskeKadenArvo(jakajanKasi);
+
+				if (pelaajanArvo > 21)
 				{
-					Console.WriteLine("Ylitit 21! Hävisit pelin.");
-					return;
+					Console.WriteLine("Hävisit! Ylitit 21.");
 				}
-				// Pelaajan valinta: "Hit" tai "Stand"
-				Console.WriteLine("\nHaluatko ottaa uuden kortin (h) vai jäädä (s)?");
-				string valinta = Console.ReadLine();
-				if (valinta.ToLower() == "h")
+				else if (jakajanArvo > 21 || pelaajanArvo > jakajanArvo)
 				{
-					pelaajanKasi.Add(deck.DrawCard());
+					Console.WriteLine("Voitit! Onneksi olkoon!");
 				}
-				else if (valinta.ToLower() == "s")
+				else if (pelaajanArvo == jakajanArvo)
 				{
-					pelaajanVuoro = false;
+					Console.WriteLine("Tasapeli!");
 				}
 				else
 				{
-					Console.WriteLine("Virheellinen valinta, yritä uudelleen.");
+					Console.WriteLine("Hävisit! Jakaja voitti.");
 				}
-			}
 
-			// Jakajan vuoro
-			Console.WriteLine("\nJakajan vuoro...");
-			while (LaskeKadenArvo(jakajanKasi) < 17)
-			{
-				jakajanKasi.Add(deck.DrawCard());
-			}
-
-			// Tulostetaan lopulliset kädet
-			Console.WriteLine("\nLopulliset kädet:");
-			Console.WriteLine("Pelaajan käsi:");
-			TulostaKasi(pelaajanKasi);
-			Console.WriteLine($"Pelaajan käden arvo: {LaskeKadenArvo(pelaajanKasi)}");
-
-			Console.WriteLine("\nJakajan käsi:");
-			TulostaKasi(jakajanKasi);
-			Console.WriteLine($"Jakajan käden arvo: {LaskeKadenArvo(pelaajanKasi)}");
-
-			// Voittajan selvittäminen
-			int pelaajanArvo = LaskeKadenArvo(pelaajanKasi);
-			int jakajanArvo = LaskeKadenArvo(pelaajanKasi);
-
-			if (pelaajanArvo > 21)
-			{
-				Console.WriteLine("Hävisit! Ylitit 21.");
-			}
-			else if (jakajanArvo > 21 || pelaajanArvo > jakajanArvo)
-			{
-				Console.WriteLine("Voitit! Onneksi olkoon!");
-			}
-			else if (pelaajanArvo == jakajanArvo)
-			{
-				Console.WriteLine("Tasapeli!");
-			}
-			else
-			{
-				Console.WriteLine("Hävisit! Jakaja voitti.");
+				// Kysytään, haluaako pelaaja pelata uudelleen
+				Console.WriteLine("\nHaluatko pelata uudelleen? (k/e)");
+				string uudelleen = Console.ReadLine().ToLower();
+				if (uudelleen != "k")
+				{
+					break;
+				}
+				Console.Clear();
 			}
 		}
 
@@ -129,22 +152,21 @@ namespace Blackjack
 				assienMaara--;
 			}
 			return arvo;
-
 		}
 	}
 
 	// Korttiluokka
 	class Card
 	{
-		public string Maa { get; set; } // Maat: Hertta, Ruutu, Risti, Pata
+		public string Maa { get; set; } // Maat: Zahra, Sara, Anna, Zeinab
 		public string ArvoNimi { get; set; } // Kortin arvo: 2-10, J, Q, K, A
 		public int Arvo { get; set; }   // Kortin numeerinen arvo
 
-		public Card(string maa, string ArvoNimi, int arvo)
+		public Card(string maa, string arvoNimi, int arvo)
 		{
 			Maa = maa;
-			ArvoNimi = ArvoNimi;
-			arvo = arvo;
+			ArvoNimi = arvoNimi;
+			Arvo = arvo;
 		}
 
 		public override string ToString()
@@ -161,7 +183,7 @@ namespace Blackjack
 		public Deck()
 		{
 			kortit = new List<Card>();
-			string[] maat = { "Zahra", "Sara", "Rabi", "Milla" };
+			string[] maat = { "Zahra", "Sara", "Anna", "Zeinab" };
 			string[] arvot = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
 			int[] numeerisetArvot = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
 
@@ -175,7 +197,7 @@ namespace Blackjack
 			}
 		}
 
-		// Korttipakan sekoittaminens
+		// Korttipakan sekoittaminen
 		public void Sekoita()
 		{
 			Random rng = new Random();
@@ -193,10 +215,31 @@ namespace Blackjack
 		// Kortin nostaminen pakasta
 		public Card DrawCard()
 		{
+			if (kortit.Count == 0)
+			{
+				throw new InvalidOperationException("Korttipakka on tyhjä!");
+			}
 			Card card = kortit[0];
 			kortit.RemoveAt(0);
 			return card;
 		}
+
+		// Näytä jäljellä olevat kortit
+		public void NaytaJaljellaOlevatKortit()
+		{
+			if (kortit.Count == 0)
+			{
+				Console.WriteLine("Korttipakka on tyhjä!");
+			}
+			else
+			{
+				foreach (var kortti in kortit)
+				{
+					Console.WriteLine(kortti);
+				}
+			}
+		}
 	}
 }
+
 
